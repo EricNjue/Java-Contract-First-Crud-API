@@ -1,0 +1,19 @@
+version: '3.2'
+services:
+  postgres:
+    restart: always
+    container_name: open_api_app_db
+    image: postgres:10.4
+    environment:
+      POSTGRES_PASSWORD: password
+    ports:
+      - '5432:5432'
+
+  open-api-app:
+    build: .
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/test
+    expose:
+      - '9000'
+    ports:
+      - '9000:9000'
