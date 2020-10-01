@@ -21,6 +21,28 @@ servers:
 #  -ApiKey: []
 
 paths:
+  /user:
+    post:
+      tags:
+        - user
+      summary: Create user
+      description: Create user functionality
+      operationId: createUser
+      requestBody:
+        description: User object to be created
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        200:
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestResponse'
+
   /user/{username}:
     get:
       tags:
@@ -84,6 +106,16 @@ components:
           type: integer
           description: User status
           format: int32
+    RequestResponse:
+      type: object
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+        message:
+          type: string
+
   securitySchemes:
     OAuth2:
       type: oauth2
