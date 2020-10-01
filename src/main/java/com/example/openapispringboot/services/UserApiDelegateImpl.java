@@ -15,9 +15,9 @@ public class UserApiDelegateImpl implements UserApiDelegate {
     public ResponseEntity<User> getUserByName(String username) {
 
         User user = new User();
-        user.setFirstName("Eric");
+        user.setFirstName("Eric Docker");
         user.setId(1L);
-        user.setLastName("Njue");
+        user.setLastName("Njue Docker");
         user.setUsername(username);
         user.setUserStatus(2);
 

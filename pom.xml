@@ -137,6 +137,12 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <layers>
+                        <!--This will enable the application to be layered. It enables a docker image for the app to be built faster-->
+                        <enabled>true</enabled>
+                    </layers>
+                </configuration>
             </plugin>
 
             <plugin>
