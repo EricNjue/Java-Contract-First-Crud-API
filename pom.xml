@@ -30,6 +30,8 @@
         <junit-version>4.12</junit-version>
         <migbase64-version>2.2</migbase64-version>
         <jackson-databind-nullable>0.2.1</jackson-databind-nullable>
+        <docker.image.prefix>njuegitonga</docker.image.prefix>
+        <docker.image.name>spring-boot-openapi</docker.image.name>
     </properties>
 
     <dependencies>
@@ -145,6 +147,41 @@
                 </configuration>
             </plugin>
 
+            <!-- fabric8 plugin to push docker images to registry-->
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.33.0</version>
+                <configuration>
+                    <verbose>true</verbose>
+                    <images>
+                        <image>
+                            <name>${docker.image.prefix}/${docker.image.name}</name>
+                            <build>
+                                <dockerFileDir>${project.basedir}</dockerFileDir>
+                                <assembly>
+                                    <descriptorRef>artifact</descriptorRef>
+                                </assembly>
+                                <tags>
+                                    <tag>1.0.0</tag>
+                                </tags>
+                            </build>
+                        </image>
+                    </images>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>default</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>build</goal>
+                            <goal>push</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- openapitools-->
             <plugin>
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
