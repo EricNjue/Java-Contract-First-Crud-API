@@ -47,7 +47,24 @@ paths:
         404:
           description: User not found
           content: {}
-
+  /users:
+    get:
+      tags:
+        - users
+      summary: Get all the available users
+      operationId: getAllUsers
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        404:
+          description: Users not found
+          content: {}
 
 components:
   schemas:
