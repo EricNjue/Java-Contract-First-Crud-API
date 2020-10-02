@@ -140,6 +140,7 @@
     </dependencies>
 
     <build>
+        <finalName>openapi-springboot</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
